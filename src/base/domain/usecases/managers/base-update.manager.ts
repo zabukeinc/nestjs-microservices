@@ -15,9 +15,13 @@ export abstract class BaseUpdateManager<Entity> {
     if (await this.validation()) {
       this.oldData = this.entity;
 
-      const updated = await this.service.update(this.id, this.entity);
+      const oldEntity = await this.service.show(this.id);
 
-      await this.afterProcess(this.oldData, updated);
+      const newEntity = Object.assign(oldEntity, this.entity);
+
+      const updated = await this.service.save(newEntity);
+
+      await this.afterProcess(oldEntity, updated);
 
       return updated;
     }
