@@ -15,7 +15,7 @@ export class UserService extends BaseService<UserEntity> {
     super(repository);
   }
 
-  relations = ['user_pin'];
+  relations = ['user_pin', 'user_addresses', 'transactions'];
 
   async addPin(entity: UserEntity): Promise<UserEntity> {
     return await this.repository.save(entity);

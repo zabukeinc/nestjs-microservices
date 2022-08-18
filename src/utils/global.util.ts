@@ -3,16 +3,18 @@ import { UserAddressModel } from 'src/modules/user-address/data/models/user-addr
 import { UserAddressService } from 'src/modules/user-address/data/services/user-address.service';
 import { UserAddressOrchestrator } from 'src/modules/user-address/domain/usecases/user-address.orchestrator';
 import { UserAddressController } from 'src/modules/user-address/infrastructure/controllers/user-address.controller';
+import { TransactionModel } from 'src/modules/user/data/models/consumers/transaction.model';
 import { UserPinModel } from 'src/modules/user/data/models/user-pin.model';
 import { UserModel } from 'src/modules/user/data/models/user.model';
+import { TransactionService } from 'src/modules/user/data/services/consumers/transaction.service';
 import { UserService } from 'src/modules/user/data/services/user.service';
 import { UserOrchestrator } from 'src/modules/user/domain/usecases/user.orchestrator';
-import { TestConsumer } from 'src/modules/user/infrastructure/consumers/test.consumer';
+import { TransactionConsumer } from 'src/modules/user/infrastructure/consumers/transaction/transaction.consumer';
 import { UserController } from 'src/modules/user/infrastructure/controllers/user.controller';
 import { UserProducer } from 'src/modules/user/infrastructure/producers/user.producer';
 import { USER_COMMAND_CONNECTION } from 'src/modules/user/utils/connection-name.util';
 
-export const MODELS = [UserModel, UserPinModel, UserAddressModel];
+export const MODELS = [UserModel, UserPinModel, UserAddressModel, TransactionModel];
 
 export const PROVIDERS = [
   UserService,
@@ -20,12 +22,15 @@ export const PROVIDERS = [
   UserAddressOrchestrator,
   UserAddressService,
   UserProducer,
+
+  TransactionService,
 ];
 
 export const CONTROLLERS = [
   UserController,
   UserAddressController,
-  TestConsumer,
+
+  TransactionConsumer
 ];
 
 export const PORT = 3000;

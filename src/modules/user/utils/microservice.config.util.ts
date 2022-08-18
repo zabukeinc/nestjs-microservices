@@ -7,7 +7,7 @@ import {
   KAFKA_NAME,
 } from 'src/utils/global.util';
 
-export const KAFKA_CLIENT_NAME = KAFKA_NAME;
+export const KAFKA_CLIENT_NAME = 'user-kafka';
 
 export default registerAs(
   'kafkaClientConfig',
@@ -15,14 +15,14 @@ export default registerAs(
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: KAFKA_CLIENT_ID,
-        brokers: [KAFKA_BROKER],
+        clientId: 'user-client-id',
+        brokers: ['localhost:9092'],
         retry: {
           retries: 100000,
         },
       },
       consumer: {
-        groupId: KAFKA_GROUP_ID,
+        groupId: 'user-consumer',
       },
     },
   }),

@@ -1,4 +1,5 @@
 import { BaseEntity } from 'src/base/domain/entities/base.entity';
+import { TransactionEntity } from './consumers/transaction.entity';
 import { UserPinEntity } from './user-pin.entity';
 
 export enum UserGender {
@@ -27,4 +28,6 @@ export interface UserEntity extends BaseEntity {
   created_by: string;
   updated_by: string;
   user_pin?: UserPinEntity;
+
+  transactions?: TransactionEntity[];
 }
