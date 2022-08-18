@@ -1,12 +1,12 @@
-import { TransactionService } from "src/modules/user/data/services/consumers/transaction.service";
-import { UserService } from "src/modules/user/data/services/user.service";
-import { TransactionEntity } from "src/modules/user/domain/entities/consumers/transaction.entity";
+import { TransactionService } from 'src/modules/user/data/services/consumers/transaction.service';
+import { UserService } from 'src/modules/user/data/services/user.service';
+import { TransactionEntity } from 'src/modules/user/domain/entities/consumers/transaction.entity';
 
 export class TransactionCreatedManager {
   constructor(
     protected service: TransactionService,
     protected userService: UserService,
-    protected payload: any
+    protected payload: any,
   ) {}
 
   async execute(): Promise<void> {
@@ -14,9 +14,7 @@ export class TransactionCreatedManager {
 
     if (!user) return;
 
-    await this.service.save(
-      this.transform()
-    );
+    await this.service.save(this.transform());
   }
 
   protected transform(): TransactionEntity {
@@ -30,12 +28,12 @@ export class TransactionCreatedManager {
       created_at: new Date(),
       updated_at: new Date(),
       deleted_at: null,
-    }
+    };
   }
 
   protected getTotalQuantities(): number {
     return this.payload.items.reduce((total: number, item) => {
-      return total += (parseInt(item.quantity) || 0);
+      return (total += parseInt(item.quantity) || 0);
     }, 0);
   }
 }

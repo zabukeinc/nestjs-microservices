@@ -12,7 +12,7 @@ import { TransactionTopics } from './transaction.topics';
 export class TransactionConsumer extends BaseConsumer {
   constructor(
     protected transactionService: TransactionService,
-    protected userService: UserService
+    protected userService: UserService,
   ) {
     super(
       new Kafka({
@@ -42,7 +42,11 @@ export class TransactionConsumer extends BaseConsumer {
   }
 
   async created(payload): Promise<void> {
-    new TransactionCreatedManager(this.transactionService,this.userService, payload).execute();
+    new TransactionCreatedManager(
+      this.transactionService,
+      this.userService,
+      payload,
+    ).execute();
     console.log('Consumed trx created', payload);
   }
 

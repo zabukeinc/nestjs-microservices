@@ -14,7 +14,12 @@ import { UserController } from 'src/modules/user/infrastructure/controllers/user
 import { UserProducer } from 'src/modules/user/infrastructure/producers/user.producer';
 import { USER_COMMAND_CONNECTION } from 'src/modules/user/utils/connection-name.util';
 
-export const MODELS = [UserModel, UserPinModel, UserAddressModel, TransactionModel];
+export const MODELS = [
+  UserModel,
+  UserPinModel,
+  UserAddressModel,
+  TransactionModel,
+];
 
 export const PROVIDERS = [
   UserService,
@@ -30,7 +35,7 @@ export const CONTROLLERS = [
   UserController,
   UserAddressController,
 
-  TransactionConsumer
+  TransactionConsumer,
 ];
 
 export const PORT = 3000;

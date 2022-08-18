@@ -74,8 +74,8 @@ export class UserModel extends BaseModel implements UserEntity {
   })
   user_addresses: UserAddressModel[];
 
-  @OneToMany(() => TransactionModel, model => model.user, {
-    onUpdate: 'CASCADE'
+  @OneToMany(() => TransactionModel, (model) => model.user, {
+    onUpdate: 'CASCADE',
   })
-  transactions: TransactionModel[]
+  transactions: TransactionModel[];
 }
