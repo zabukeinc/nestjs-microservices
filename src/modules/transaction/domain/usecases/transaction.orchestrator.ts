@@ -46,7 +46,10 @@ export class TransactionOrchestrator extends BaseOrchestrator<TransactionEntity>
     ).execute();
   }
 
-  async update(id: number, entity: TransactionEntity): Promise<TransactionEntity> {
+  async update(
+    id: number,
+    entity: TransactionEntity,
+  ): Promise<TransactionEntity> {
     return await new UpdateTransactionManager(
       this.service,
       this.producer,

@@ -14,7 +14,10 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('Transactions')
     .build();
-  const submoduleTransaction = SwaggerModule.createDocument(app, configTransaction);
+  const submoduleTransaction = SwaggerModule.createDocument(
+    app,
+    configTransaction,
+  );
   SwaggerModule.setup('api', app, submoduleTransaction);
 
   await app.listen(PORT);

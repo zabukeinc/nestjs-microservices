@@ -3,7 +3,6 @@ import { TransactionService } from 'src/modules/transaction/data/services/transa
 import { TransactionProducer } from 'src/modules/transaction/infrastructure/producers/transaction.producer';
 import { TransactionEntity } from '../../entities/transaction.entity';
 
-
 export class UpdateTransactionManager extends BaseUpdateManager<TransactionEntity> {
   constructor(
     protected service: TransactionService,

@@ -17,19 +17,17 @@ export const PROVIDERS = [
   TransactionOrchestrator,
   TransactionProducer,
 
-  UserService
+  UserService,
 ];
 
-export const CONTROLLERS = [
-  TransactionController,
-  UserConsumer,
-];
+export const CONTROLLERS = [TransactionController, UserConsumer];
 
 export const PORT = 3001;
 
 export const KAFKA_BROKER = process.env.KAFKA_BROKER || 'localhost:9092';
 export const KAFKA_RETRIES = process.env.KAFKA_RETRIES || 100000;
-export const KAFKA_CLIENT_ID = process.env.KAFKA_CLIENT_ID || 'transaction-service';
+export const KAFKA_CLIENT_ID =
+  process.env.KAFKA_CLIENT_ID || 'transaction-service';
 export const KAFKA_GROUP_ID = process.env.GROUP_ID || 'transaction-consumer';
 export const KAFKA_NAME = process.env.KAFKA_NAME || 'transaction-service';
 

@@ -4,7 +4,6 @@ import { TransactionService } from 'src/modules/transaction/data/services/transa
 import { TransactionProducer } from 'src/modules/transaction/infrastructure/producers/transaction.producer';
 import { TransactionEntity } from '../../entities/transaction.entity';
 
-
 export class DeleteTransactionManager extends BaseDeleteManager<TransactionEntity> {
   constructor(
     protected service: TransactionService,
@@ -22,7 +21,9 @@ export class DeleteTransactionManager extends BaseDeleteManager<TransactionEntit
     const existing = await this.service.show(this.id);
 
     if (!existing)
-      throw new NotFoundException(`Transaction with id ${this.id} doesn't exist.`);
+      throw new NotFoundException(
+        `Transaction with id ${this.id} doesn't exist.`,
+      );
 
     return true;
   }

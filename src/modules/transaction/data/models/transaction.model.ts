@@ -18,17 +18,17 @@ export class TransactionModel extends BaseModel implements TransactionEntity {
   @Column('float', { name: 'total' })
   total: number;
 
-  @OneToMany(() => TransactionItemModel, model => model.transaction, {
-    cascade: ['insert', 'update', 'remove']
+  @OneToMany(() => TransactionItemModel, (model) => model.transaction, {
+    cascade: ['insert', 'update', 'remove'],
   })
   items: TransactionItemModel[];
 
   @Column('int', { name: 'user_id', nullable: true })
   user_id?: number;
 
-  @ManyToOne(() => UserModel, model => model.transactions, {
+  @ManyToOne(() => UserModel, (model) => model.transactions, {
     onUpdate: 'CASCADE',
-    cascade: ['update']
+    cascade: ['update'],
   })
   @JoinColumn({ name: 'user_id' })
   user: UserModel;

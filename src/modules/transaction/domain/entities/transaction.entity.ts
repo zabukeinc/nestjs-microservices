@@ -12,4 +12,3 @@ export interface TransactionEntity extends BaseEntity {
   user_id?: number;
   user: UserEntity;
 }
-

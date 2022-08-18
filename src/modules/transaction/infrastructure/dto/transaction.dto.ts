@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import {  IsEmpty, ValidateNested } from 'class-validator';
+import { ValidateNested } from 'class-validator';
 import { BaseDTO } from 'src/base/infrastructure/dto/base.dto';
 import { UserEntity } from '../../domain/entities/consumers/user.entity';
 import { TransactionEntity } from '../../domain/entities/transaction.entity';
@@ -26,6 +26,6 @@ export class TransactionDTO extends BaseDTO implements TransactionEntity {
 
   @ApiProperty({ type: 'number' })
   user_id: number;
-  
+
   user: UserEntity;
 }

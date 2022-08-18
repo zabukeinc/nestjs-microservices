@@ -56,7 +56,7 @@ export class TransactionController extends BaseController<TransactionEntity> {
       this.errorHandler.catch(err);
     }
   }
-  
+
   @Put(':id')
   async update(
     @Param('id') id: number,

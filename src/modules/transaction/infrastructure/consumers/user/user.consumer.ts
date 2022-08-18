@@ -2,7 +2,11 @@ import { Controller } from '@nestjs/common';
 import { Kafka } from 'kafkajs';
 import { BaseConsumer } from 'src/base/infrastructure/consumers/base.consumer';
 import { UserService } from 'src/modules/transaction/data/services/user.service';
-import { KAFKA_BROKER, KAFKA_CLIENT_ID, KAFKA_GROUP_ID } from 'src/utils/global.util';
+import {
+  KAFKA_BROKER,
+  KAFKA_CLIENT_ID,
+  KAFKA_GROUP_ID,
+} from 'src/utils/global.util';
 import { UserChangedManager } from './managers/user-changed.manager';
 import { UserCreatedManager } from './managers/user-created.manager';
 import { UserDeletedManager } from './managers/user-deleted.manager';

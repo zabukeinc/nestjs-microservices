@@ -14,25 +14,37 @@ export class TransactionProducer extends BaseProducer {
 
   async created(entity: TransactionEntity): Promise<void> {
     lastValueFrom(
-      this.client.send(TransactionTopics.HANDLE_TRANSACTION_CREATED, JSON.stringify(entity)),
+      this.client.send(
+        TransactionTopics.HANDLE_TRANSACTION_CREATED,
+        JSON.stringify(entity),
+      ),
     );
     console.log(TransactionTopics.HANDLE_TRANSACTION_CREATED, ' triggered');
   }
 
   async deleted(entity: TransactionEntity | number | string): Promise<void> {
     lastValueFrom(
-      this.client.send(TransactionTopics.HANDLE_TRANSACTION_DELETED, JSON.stringify(entity)),
+      this.client.send(
+        TransactionTopics.HANDLE_TRANSACTION_DELETED,
+        JSON.stringify(entity),
+      ),
     );
     console.log(TransactionTopics.HANDLE_TRANSACTION_DELETED, ' triggered');
   }
 
-  async changed(newEntity: TransactionEntity, oldEntity: TransactionEntity): Promise<void> {
+  async changed(
+    newEntity: TransactionEntity,
+    oldEntity: TransactionEntity,
+  ): Promise<void> {
     const data = {
       new: newEntity,
       old: oldEntity,
     };
     lastValueFrom(
-      this.client.send(TransactionTopics.HANDLE_TRANSACTION_CHANGED, JSON.stringify(data)),
+      this.client.send(
+        TransactionTopics.HANDLE_TRANSACTION_CHANGED,
+        JSON.stringify(data),
+      ),
     );
     console.log(TransactionTopics.HANDLE_TRANSACTION_CHANGED, ' triggered');
   }
