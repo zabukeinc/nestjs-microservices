@@ -9,24 +9,13 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix('api');
 
-  const configUser = new DocumentBuilder()
-    .setTitle('Users Module')
+  const configTransaction = new DocumentBuilder()
+    .setTitle('Transactions Module')
     .setVersion('1.0')
-    .addTag('Users')
+    .addTag('Transactions')
     .build();
-  const submoduleUser = SwaggerModule.createDocument(app, configUser);
-  SwaggerModule.setup('api', app, submoduleUser);
-
-  const configUserAddress = new DocumentBuilder()
-    .setTitle('Users Address Sub-Module')
-    .setVersion('1.0')
-    .addTag('Users')
-    .build();
-  const submoduleUserUserAddress = SwaggerModule.createDocument(
-    app,
-    configUserAddress,
-  );
-  SwaggerModule.setup('api', app, submoduleUserUserAddress);
+  const submoduleTransaction = SwaggerModule.createDocument(app, configTransaction);
+  SwaggerModule.setup('api', app, submoduleTransaction);
 
   await app.listen(PORT);
 }
