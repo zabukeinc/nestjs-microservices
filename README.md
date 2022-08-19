@@ -4,7 +4,7 @@
 
 ## Description
 
-Boilerplate NestJS Microservices with Kafka
+Boilerplate NestJS Microservices with Kafka with DDD Pattern.
 
 ## Installation
 
@@ -14,15 +14,23 @@ $ npm install
 
 ## Requirement
 
-- Docker Apps - [Download Docker](https://www.docker.com/products/docker-desktop/)
+- Docker Apps - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
 
+# Configure DB Connection
+open file (src/utils/global.utils) 
+- set like your current configuration local machine
+
+# Configure Kafka Connection
+open file (microservice.config.util.ts)
+- change kafka client name like name of the service
+- change client id like name of the service
+- change brokers host like your current machine host kafka
+- change consumer group id like name of the service
 
 ## Running the app
 
 ```bash
 
-# run tools for development on docker
-$ docker-compose up -d
 
 # development
 $ npm run start
