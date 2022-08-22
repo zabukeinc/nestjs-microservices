@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsIn } from 'class-validator';
-import { BaseDTO } from 'src/base/infrastructure/dto/base.dto';
+import { BaseDTO } from '@base-module/infrastructure/dto/base.dto';
 import { UserEntity, UserGender } from '../../domain/entities/user.entity';
 
 export class UserDTO extends BaseDTO implements UserEntity {

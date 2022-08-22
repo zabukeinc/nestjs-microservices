@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-import { BaseProducer } from 'src/base/infrastructure/producers/base.producer';
+import { BaseProducer } from '@base-module/infrastructure/producers/base.producer';
 import { UserEntity } from '../../domain/entities/user.entity';
 import { KAFKA_CLIENT_NAME } from '../../utils/microservice.config.util';
 import { UserTopics } from '../topics';

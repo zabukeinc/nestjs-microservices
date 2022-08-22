@@ -11,6 +11,11 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@utils/*": ["src/utils/*"],
+      "@base-module/*": ["src/base/*"],
+      "@user-module/*": ["src/modules/user/*"]
+    }
   }
 }

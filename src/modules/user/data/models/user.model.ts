@@ -1,5 +1,4 @@
-import { BaseModel } from 'src/base/data/models/base.model';
-import { UserAddressModel } from 'src/modules/user-address/data/models/user-address.model';
+import { BaseModel } from '@base-module/data/models/base.model';
 import { Column, Entity, OneToMany, OneToOne } from 'typeorm';
 import { UserEntity, UserGender } from '../../domain/entities/user.entity';
 import { TransactionModel } from './consumers/transaction.model';
@@ -69,10 +68,6 @@ export class UserModel extends BaseModel implements UserEntity {
   })
   user_pin: UserPinModel;
 
-  @OneToMany(() => UserAddressModel, (model) => model.user, {
-    cascade: ['insert', 'update', 'remove'],
-  })
-  user_addresses: UserAddressModel[];
 
   @OneToMany(() => TransactionModel, (model) => model.user, {
     onUpdate: 'CASCADE',

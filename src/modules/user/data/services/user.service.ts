@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseService } from 'src/base/data/services/base.service';
+import { BaseService } from '../../../../base/data/services/base.service';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../../domain/entities/user.entity';
 import { USER_COMMAND_CONNECTION } from '../../utils/connection-name.util';

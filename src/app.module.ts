@@ -1,11 +1,10 @@
 import { Inject, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientProxy, ClientsModule } from '@nestjs/microservices';
-import { UserAddressModule } from './modules/user-address/user-address.module';
-import { UserModule } from './modules/user/user.module';
+import { UserModule } from '@user-module/user.module';
 import microserviceConfigUtil, {
   KAFKA_CLIENT_NAME,
-} from './modules/user/utils/microservice.config.util';
+} from '@user-module/utils/microservice.config.util';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,7 +23,6 @@ import microserviceConfigUtil, {
 
     // Sub Modules
     UserModule,
-    UserAddressModule,
   ],
 })
 export class AppModule {

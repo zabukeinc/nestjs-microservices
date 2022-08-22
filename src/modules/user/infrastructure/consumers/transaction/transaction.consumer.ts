@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { Kafka } from 'kafkajs';
-import { BaseConsumer } from 'src/base/infrastructure/consumers/base.consumer';
-import { TransactionService } from 'src/modules/user/data/services/consumers/transaction.service';
-import { UserService } from 'src/modules/user/data/services/user.service';
+import { BaseConsumer } from '@base-module/infrastructure/consumers/base.consumer';
+import { TransactionService } from '@user-module/data/services/consumers/transaction.service';
+import { UserService } from '@user-module/data/services/user.service';
 import { TransactionChangedManager } from './managers/transaction-changed.manager';
 import { TransactionCreatedManager } from './managers/transaction-created.manager';
 import { TransactionDeletedManager } from './managers/transaction-deleted.manager';

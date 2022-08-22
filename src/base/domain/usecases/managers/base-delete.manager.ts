@@ -1,4 +1,4 @@
-import { BaseService } from 'src/base/data/services/base.service';
+import { BaseService } from '../../../../base/data/services/base.service';
 
 export abstract class BaseDeleteManager<Entity> {
   constructor(protected service: BaseService<Entity>, protected id: number) {}

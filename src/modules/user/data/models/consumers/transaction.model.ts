@@ -1,7 +1,7 @@
-import { BaseModel } from 'src/base/data/models/base.model';
-import { TransactionEntity } from 'src/modules/user/domain/entities/consumers/transaction.entity';
+import { BaseModel } from '@base-module/data/models/base.model';
+import { TransactionEntity } from '@user-module/domain/entities/consumers/transaction.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { UserModel } from '../user.model';
+import { UserModel } from '@user-module/data/models/user.model';
 
 @Entity({ name: 'transactions' })
 export class TransactionModel extends BaseModel implements TransactionEntity {

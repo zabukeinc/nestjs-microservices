@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
-import { BaseDeleteManager } from 'src/base/domain/usecases/managers/base-delete.manager';
-import { UserService } from 'src/modules/user/data/services/user.service';
-import { UserProducer } from 'src/modules/user/infrastructure/producers/user.producer';
+import { BaseDeleteManager } from '@base-module/domain/usecases/managers/base-delete.manager';
+import { UserService } from '@user-module/data/services/user.service';
+import { UserProducer } from '@user-module/infrastructure/producers/user.producer';
 import { UserEntity } from '../../entities/user.entity';
 
 export class DeleteUserManager extends BaseDeleteManager<UserEntity> {

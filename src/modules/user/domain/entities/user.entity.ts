@@ -1,4 +1,4 @@
-import { BaseEntity } from 'src/base/domain/entities/base.entity';
+import { BaseEntity } from '@base-module/domain/entities/base.entity';
 import { TransactionEntity } from './consumers/transaction.entity';
 import { UserPinEntity } from './user-pin.entity';
 

@@ -1,6 +1,6 @@
-import { BaseCreateManager } from 'src/base/domain/usecases/managers/base-create.manager';
-import { UserService } from 'src/modules/user/data/services/user.service';
-import { UserProducer } from 'src/modules/user/infrastructure/producers/user.producer';
+import { BaseCreateManager } from '@base-module/domain/usecases/managers/base-create.manager';
+import { UserService } from '@user-module/data/services/user.service';
+import { UserProducer } from '@user-module/infrastructure/producers/user.producer';
 import { UserEntity } from '../../entities/user.entity';
 
 export class CreateUserManager extends BaseCreateManager<UserEntity> {

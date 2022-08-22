@@ -10,8 +10,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ResponseEntity } from 'src/base/helpers/response.helper';
-import { BaseController } from 'src/base/infrastructure/controllers/base.controller';
+import { ResponseEntity } from '@base-module/helpers/response.helper';
+import { BaseController } from '@base-module/infrastructure/controllers/base.controller';
 import { UserEntity } from '../../domain/entities/user.entity';
 import { UserOrchestrator } from '../../domain/usecases/user.orchestrator';
 import { UserPinDTO } from '../dto/user-pin.dto';

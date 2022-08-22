@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseService } from 'src/base/data/services/base.service';
-import { TransactionEntity } from 'src/modules/user/domain/entities/consumers/transaction.entity';
-import { USER_COMMAND_CONNECTION } from 'src/modules/user/utils/connection-name.util';
+import { BaseService } from '@base-module/data/services/base.service';
+import { TransactionEntity } from '@user-module/domain/entities/consumers/transaction.entity';
+import { USER_COMMAND_CONNECTION } from '@user-module/utils/connection-name.util';
 import { Repository } from 'typeorm';
 import { TransactionModel } from '../../models/consumers/transaction.model';
 
