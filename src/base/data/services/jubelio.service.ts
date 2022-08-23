@@ -29,6 +29,8 @@ export class BaseJubelioService extends BaseAxiosService {
   public axiosServiceName = 'JUBELIO_SERVICE';
 
   public retryLimit = 5;
+  
+  // TODO: Implement retry limit request.
 
   async login(): Promise<HttpModuleOptions> {
     const body = { email: JUBELIO_USER, password: JUBELIO_PASSWORD };
