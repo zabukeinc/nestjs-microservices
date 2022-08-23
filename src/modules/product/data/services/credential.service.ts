@@ -4,14 +4,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as moment from 'moment';
-import { HOPE_COMMAND_CONNECTION } from '@utils/global.util';
 import { CredentialModel } from '../models/credential.model';
+import { PRODUCT_COMMAND_CONNECTION } from '@product-module/utils/product.connection';
 
 @Injectable()
 export class CredentialService {
   constructor(
-    @InjectRepository(CredentialModel, HOPE_COMMAND_CONNECTION)
-    public repo: Repository<CredentialModel>,
+    @InjectRepository(CredentialModel, PRODUCT_COMMAND_CONNECTION)
+    private repo: Repository<CredentialModel>,
   ) {}
 
   async getToken(): Promise<CredentialEntity> {

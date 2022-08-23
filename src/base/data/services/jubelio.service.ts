@@ -10,13 +10,10 @@ import {
   JUBELIO_WEBHOOK_SECRET,
 } from '@utils/global.util';
 import Crypto from 'crypto';
-import { CredentialService } from './credential.service';
+import { CredentialService } from '@product-module/data/services/credential.service';
 
 export class BaseJubelioService extends BaseAxiosService {
-  constructor(
-    protected httpService: HttpService,
-    protected credentialService: CredentialService,
-  ) {
+  constructor(protected httpService: HttpService) {
     super(httpService);
   }
   public url: string = JUBELIO_HOST;
@@ -26,6 +23,8 @@ export class BaseJubelioService extends BaseAxiosService {
     timeout: JUBELIO_TIMEOUT,
     headers: null,
   };
+
+  public credentialService: CredentialService;
 
   public axiosServiceName = 'JUBELIO_SERVICE';
 

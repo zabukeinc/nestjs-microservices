@@ -3,10 +3,16 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CONTROLLERS, MODELS, PROVIDERS } from '@utils/global.util';
 import microserviceConfigUtil, {
   KAFKA_CLIENT_NAME,
 } from '@utils/microservice.util';
+import { PRODUCT_COMMAND_CONNECTION } from './utils/product.connection';
+import {
+  PRODUCT_CONTROLLERS,
+  PRODUCT_DB_CONFIG,
+  PRODUCT_MODELS,
+  PRODUCT_PROVIDERS,
+} from './utils/product.util';
 
 @Module({
   imports: [
@@ -24,22 +30,10 @@ import microserviceConfigUtil, {
         inject: [ConfigService],
       },
     ]),
-    TypeOrmModule.forRootAsync({
-      useFactory: () => ({
-        type: 'mysql',
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        // password: '',
-        database: 'itmi-nestjs',
-        entities: MODELS,
-        synchronize: true,
-        // name: HOPE_COMMAND_CONNECTION,
-      }),
-    }),
-    TypeOrmModule.forFeature(MODELS),
+    TypeOrmModule.forRoot(PRODUCT_DB_CONFIG),
+    TypeOrmModule.forFeature(PRODUCT_MODELS, PRODUCT_COMMAND_CONNECTION),
   ],
-  controllers: CONTROLLERS,
-  providers: PROVIDERS,
+  controllers: PRODUCT_CONTROLLERS,
+  providers: PRODUCT_PROVIDERS,
 })
 export class ProductModule {}
