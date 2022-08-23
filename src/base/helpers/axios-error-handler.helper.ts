@@ -1,4 +1,10 @@
-import { BadGatewayException, BadRequestException, InternalServerErrorException, NotFoundException } from "@nestjs/common";
+import {
+  BadGatewayException,
+  BadRequestException,
+  InternalServerErrorException,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 export interface AxiosResponseDataEntity {
   statusCode: number;
   error: string;
@@ -13,6 +19,8 @@ export class AxiosErrorHandlerHelper {
     switch (statusCode) {
       case 500:
         throw new InternalServerErrorException(code);
+      case 401:
+        throw new UnauthorizedException(code);
       case 404:
         throw new NotFoundException(code);
       case 400:
@@ -20,7 +28,7 @@ export class AxiosErrorHandlerHelper {
       case 502:
         throw new BadGatewayException(code);
       default:
-        throw new Error(code)
+        throw new Error(code);
     }
   }
 }

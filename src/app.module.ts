@@ -1,11 +1,11 @@
-import { HttpModule, HttpService } from '@nestjs/axios';
-import { Inject, Logger, Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
+import { Inject, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientProxy, ClientsModule } from '@nestjs/microservices';
-import { UserModule } from '@user-module/user.module';
+import { ProductModule } from '@product-module/product.module';
 import microserviceConfigUtil, {
   KAFKA_CLIENT_NAME,
-} from '@user-module/utils/microservice.config.util';
+} from '@utils/microservice.util';
 @Module({
   imports: [
     HttpModule,
@@ -24,7 +24,7 @@ import microserviceConfigUtil, {
     ]),
 
     // Sub Modules
-    UserModule,
+    ProductModule,
   ],
 })
 export class AppModule {
@@ -33,6 +33,6 @@ export class AppModule {
   }
 
   async onApplicationBootstrap(): Promise<void> {
-    await this.clientKafka.connect();
+    // await this.clientKafka.connect();
   }
 }

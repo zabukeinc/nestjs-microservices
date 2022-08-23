@@ -15,8 +15,7 @@
     "paths": {
       "@utils/*": ["src/utils/*"],
       "@base-module/*": ["src/base/*"],
-      "@user-module/*": ["src/modules/user/*"],
-      "@hope-module/*": ["src/modules/hope/*"]
+      "@product-module/*": ["src/modules/product/*"]
     }
   }
 }
