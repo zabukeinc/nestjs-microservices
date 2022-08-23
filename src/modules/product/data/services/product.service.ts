@@ -4,7 +4,7 @@ import { HttpService } from '@nestjs/axios';
 import { CredentialService } from '@product-module/data/services/credential.service';
 import { Injectable } from '@nestjs/common';
 import { BaseJubelioService } from '@base-module/data/services/jubelio.service';
-import { ProductLogService } from './product.log.service';
+import { ProductLogService } from './product-log.service';
 import { JUBELIO_HOST } from '@utils/global.util';
 
 @Injectable()

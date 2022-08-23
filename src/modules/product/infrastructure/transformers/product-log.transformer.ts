@@ -1,5 +1,5 @@
 import { ResponseEntity } from '@base-module/helpers/response.helper';
-import { ProductLogEntity } from '@product-module/domain/entities/log/product.log.entity';
+import { ProductLogEntity } from '@product-module/domain/entities/log/product-log.entity';
 
 export class ProductLogTransformer {
   transform(

@@ -2,7 +2,7 @@ import { BaseLogService } from '@base-module/data/services/base.log.service';
 import { ResponseEntity } from '@base-module/helpers/response.helper';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductLogEntity } from '@product-module/domain/entities/log/product.log.entity';
+import { ProductLogEntity } from '@product-module/domain/entities/log/product-log.entity';
 import { PRODUCT_COMMAND_CONNECTION } from '@product-module/utils/product.connection';
 import { Repository } from 'typeorm';
 import { ProductLogModel } from '../models/product.log.model';

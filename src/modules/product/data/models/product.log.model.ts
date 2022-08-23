@@ -1,5 +1,5 @@
 import { BaseModel } from '@base-module/data/models/base.model';
-import { ProductLogEntity } from '@product-module/domain/entities/log/product.log.entity';
+import { ProductLogEntity } from '@product-module/domain/entities/log/product-log.entity';
 import { Column, Entity } from 'typeorm';
 
 @Entity({ name: '__log_products' })
