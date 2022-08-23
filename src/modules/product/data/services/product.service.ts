@@ -20,6 +20,8 @@ export class ProductService extends BaseJubelioService {
   }
 
   async getProductById(id: number): Promise<ResponseEntity> {
+    this.currentFunctionName = 'getProductById';
+
     const url = `/inventory/items/${id}`;
     const result = await this.get(url);
     if (this.isUnauthorized(result)) {
@@ -39,6 +41,8 @@ export class ProductService extends BaseJubelioService {
   async getAllProductMaster(
     requestParam: GetAllProductMasterParamEntity,
   ): Promise<any> {
+    this.currentFunctionName = 'getAllProductMaster';
+
     const params: GetAllProductMasterParamEntity = {
       page: requestParam.page,
       pageSize: requestParam.pageSize,
@@ -69,6 +73,8 @@ export class ProductService extends BaseJubelioService {
   }
 
   async getProductCatalog(itemGroupId: number): Promise<any> {
+    this.currentFunctionName = 'getProductCatalog';
+
     const url = `/inventory/catalog/${itemGroupId}`;
     const result = await this.get(url);
 
@@ -87,6 +93,8 @@ export class ProductService extends BaseJubelioService {
   async getProductStock(
     params: GetAllProductMasterParamEntity & { q: string },
   ): Promise<ResponseEntity> {
+    this.currentFunctionName = 'getProductStock';
+
     const result = await this.get('/inventory', params);
 
     if (this.isUnauthorized(result)) {
@@ -99,6 +107,8 @@ export class ProductService extends BaseJubelioService {
   }
 
   async createEditProduct(data): Promise<ResponseEntity> {
+    this.currentFunctionName = 'createEditProduct';
+
     const url = '/inventory/catalog/';
     const result = await this.post(url, data);
 
@@ -119,6 +129,8 @@ export class ProductService extends BaseJubelioService {
   }
 
   async setProductToMaster(data): Promise<ResponseEntity> {
+    this.currentFunctionName = 'setProductToMaster';
+
     const url = '/inventory/catalog/set-master';
     const result = await this.post(url, data);
 

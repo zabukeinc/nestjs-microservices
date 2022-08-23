@@ -17,6 +17,7 @@ export class BaseAxiosService {
   public url: string;
   public config: HttpModuleOptions;
   public axiosServiceName = 'AXIOS_SERVICE_DEFAULT';
+  public currentFunctionName = 'FUNCTION_DEFAULT';
 
   setConfig(config: HttpModuleOptions): this {
     this.config = config;
@@ -154,17 +155,17 @@ export class BaseAxiosService {
   ): void {
     if (err) {
       Logger.error(
-        `:::${
-          this.axiosServiceName
-        }::: [METHOD]: ${method} <==> [URL]: ${url} <==> [PARAMS]: ${params}<==>[BODY]: ${JSON.stringify(
+        `:::${this.axiosServiceName}::: [FUNC]: ${
+          this.currentFunctionName
+        } <==> [METHOD]: ${method} <==> [URL]: ${url} <==> [PARAMS]: ${params}<==>[BODY]: ${JSON.stringify(
           body,
         )} <==> [RESPONSE]: ${JSON.stringify(err.response.data)}`,
       );
     } else {
       Logger.log(
-        `:::${
-          this.axiosServiceName
-        }::: [METHOD]: ${method} <==> [URL]: ${url} <==> [PARAMS]: ${params}<==>[BODY]: ${JSON.stringify(
+        `:::${this.axiosServiceName}::: [FUNC]: ${
+          this.currentFunctionName
+        } <==> [METHOD]: ${method} <==> [URL]: ${url} <==> [PARAMS]: ${params}<==>[BODY]: ${JSON.stringify(
           body,
         )} <==> [RESPONSE]: ${JSON.stringify(request.data)}`,
       );
