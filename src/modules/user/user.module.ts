@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -12,9 +12,11 @@ import { USER_COMMAND_CONNECTION } from '@user-module/utils/connection-name.util
 import microserviceConfigUtil, {
   KAFKA_CLIENT_NAME,
 } from '@user-module/utils/microservice.config.util';
+import { HttpModule, HttpService } from '@nestjs/axios';
 
 @Module({
   imports: [
+    HttpModule,
     ConfigModule.forRoot({
       load: [microserviceConfigUtil],
       isGlobal: true,

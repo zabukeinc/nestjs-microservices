@@ -1,4 +1,5 @@
-import { Inject, Module } from '@nestjs/common';
+import { HttpModule, HttpService } from '@nestjs/axios';
+import { Inject, Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientProxy, ClientsModule } from '@nestjs/microservices';
 import { UserModule } from '@user-module/user.module';
@@ -7,6 +8,7 @@ import microserviceConfigUtil, {
 } from '@user-module/utils/microservice.config.util';
 @Module({
   imports: [
+    HttpModule,
     ConfigModule.forRoot({
       load: [microserviceConfigUtil],
       isGlobal: true,

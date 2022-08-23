@@ -16,11 +16,12 @@ import { UserEntity } from '../../domain/entities/user.entity';
 import { UserOrchestrator } from '../../domain/usecases/user.orchestrator';
 import { UserPinDTO } from '../dto/user-pin.dto';
 import { UserDTO } from '../dto/user.dto';
+import { JubelioService } from '@hope-module/data/services/jubelio.service';
 
 @Controller('users')
 @ApiTags('API Users')
 export class UserController extends BaseController<UserEntity> {
-  constructor(public orchestrator: UserOrchestrator) {
+  constructor(public orchestrator: UserOrchestrator, public jubelio: JubelioService) {
     super(orchestrator);
   }
 
@@ -30,6 +31,7 @@ export class UserController extends BaseController<UserEntity> {
     @Query('limit') limit: number,
   ): Promise<ResponseEntity> {
     try {
+      const test = await this.jubelio.login();
       const data = await this.orchestrator.index(page, limit);
       return this.responses.json(HttpStatus.OK, data);
     } catch (err) {
