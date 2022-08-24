@@ -33,6 +33,6 @@ export class AppModule {
   }
 
   async onApplicationBootstrap(): Promise<void> {
-    // await this.clientKafka.connect();
+    await this.clientKafka.connect();
   }
 }
