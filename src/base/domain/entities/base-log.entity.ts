@@ -6,4 +6,5 @@ export interface BaseLogEntity extends BaseEntity {
   request: string;
   response: string;
   status_code: number;
+  endpoint?: string;
 }

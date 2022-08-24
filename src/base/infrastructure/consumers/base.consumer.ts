@@ -23,7 +23,6 @@ export abstract class BaseConsumer implements OnModuleInit, OnModuleDestroy {
 
   async consumerSubscribeTopics(): Promise<void> {
     const topicStrings = this.topics.map((value) => value.topic);
-
     await this.client.subscribe({
       topics: topicStrings,
       fromBeginning: false,
@@ -35,7 +34,6 @@ export abstract class BaseConsumer implements OnModuleInit, OnModuleDestroy {
   async consumerListenTopics(): Promise<void> {
     await this.client.run({
       eachMessage: async ({ topic, message }) => {
-        console.log('consumed', topic);
         await this.executeFunctions(
           topic,
           JSON.parse(message.value.toString()),

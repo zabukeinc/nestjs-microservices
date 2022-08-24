@@ -1,4 +1,4 @@
-export const PORT = 3000;
+export const PORT = 3001;
 
 export const KAFKA_BROKER = process.env.KAFKA_BROKER || 'localhost:9092';
 export const KAFKA_RETRIES = process.env.KAFKA_RETRIES || 100000;

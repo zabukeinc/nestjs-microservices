@@ -1,7 +1,8 @@
 import { registerAs } from '@nestjs/config';
 import { KafkaOptions, Transport } from '@nestjs/microservices';
+import { KAFKA_BROKER, KAFKA_CLIENT_ID, KAFKA_GROUP_ID } from './global.util';
 
-export const KAFKA_CLIENT_NAME = 'hope-kafka';
+export const KAFKA_CLIENT_NAME = 'hope-logger-kafka';
 
 export default registerAs(
   'kafkaClientConfig',
@@ -9,14 +10,14 @@ export default registerAs(
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: 'hope-client-id',
-        brokers: ['localhost:9092'],
+        clientId: KAFKA_CLIENT_ID,
+        brokers: [KAFKA_BROKER],
         retry: {
           retries: 100000,
         },
       },
       consumer: {
-        groupId: 'hope-consumer',
+        groupId: KAFKA_GROUP_ID,
       },
     },
   }),
