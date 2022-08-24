@@ -7,6 +7,7 @@ import { BaseJubelioService } from '@base-module/data/services/jubelio.service';
 import { JUBELIO_HOST } from '@utils/global.util';
 import { ProductProducer } from '@product-module/infrastructure/producers/product.producer';
 import { LogPayloadBuilderHelper } from '@base-module/helpers/log-payload-builder.helper';
+import { makeGetParam } from '@base-module/helpers/make-get-param.helper';
 
 @Injectable()
 export class ProductService extends BaseJubelioService {
@@ -35,13 +36,13 @@ export class ProductService extends BaseJubelioService {
       .setResponse(result);
 
     if (this.isUnauthorized(result)) {
-      await logger.produce();
+      logger.produce();
 
       this.config = await this.login();
       return await this.getProductById(id);
     }
 
-    await logger.produce();
+    logger.produce();
     return result;
   }
 
@@ -68,14 +69,14 @@ export class ProductService extends BaseJubelioService {
       .setResponse(result);
 
     if (this.isUnauthorized(result)) {
-      await logger.produce();
+      logger.produce();
 
       this.config = await this.login();
 
       return await this.getAllProductMaster(requestParam);
     }
 
-    await logger.produce();
+    logger.produce();
     return result;
   }
 
@@ -91,14 +92,14 @@ export class ProductService extends BaseJubelioService {
       .setResponse(result);
 
     if (this.isUnauthorized(result)) {
-      await logger.produce();
+      logger.produce();
 
       this.config = await this.login();
 
       return await this.getProductCatalog(itemGroupId);
     }
 
-    await logger.produce();
+    logger.produce();
     return result;
   }
 
@@ -110,17 +111,17 @@ export class ProductService extends BaseJubelioService {
 
     const logger = this.logBuilder
       .setAction('GET')
-      .setEndpoint(`${JUBELIO_HOST}/inventory${this.makeParam(params)}`)
+      .setEndpoint(`${JUBELIO_HOST}/inventory${makeGetParam(params)}`)
       .setResponse(result);
 
     if (this.isUnauthorized(result)) {
-      await logger.produce();
+      logger.produce();
       this.config = await this.login();
 
       return await this.getProductStock(params);
     }
 
-    await logger.produce();
+    logger.produce();
     return result;
   }
 
@@ -136,12 +137,12 @@ export class ProductService extends BaseJubelioService {
       .setResponse(result);
 
     if (this.isUnauthorized(result)) {
-      await logger.produce();
+      logger.produce();
       this.config = await this.login();
       return await this.createEditProduct(data);
     }
 
-    await logger.produce();
+    logger.produce();
     return result;
   }
 
@@ -157,13 +158,13 @@ export class ProductService extends BaseJubelioService {
       .setResponse(result);
 
     if (this.isUnauthorized(result)) {
-      await logger.produce();
+      logger.produce();
       this.config = await this.login();
 
       return await this.setProductToMaster(data);
     }
 
-    await logger.produce();
+    logger.produce();
     return result;
   }
 }

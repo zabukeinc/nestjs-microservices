@@ -1,10 +1,11 @@
 import { AxiosErrorHandlerHelper } from '@base-module/helpers/axios-error-handler.helper';
+import { ConsoleLogBuilderHelper } from '@base-module/helpers/console-log-builder.helper';
+import { makeGetParam } from '@base-module/helpers/make-get-param.helper';
 import {
   ResponseEntity,
   Responses,
 } from '@base-module/helpers/response.helper';
 import { HttpService, HttpModuleOptions } from '@nestjs/axios';
-import { Logger } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 
 export class BaseAxiosService {
@@ -20,29 +21,33 @@ export class BaseAxiosService {
   public currentFunctionName = 'FUNCTION_DEFAULT';
 
   async get<Entity>(endpoint: string, params = null): Promise<ResponseEntity> {
-    params = params ? this.makeParam(params) : '';
+    params = params ? makeGetParam(params) : '';
 
     try {
       const request = await lastValueFrom(
         this.httpService.get(`${endpoint}${params}`, this.config),
       );
-      this.produceLog(
-        `${this.url}${endpoint}${params}`,
-        params,
-        null,
-        'GET',
-        request,
-      );
+
+      new ConsoleLogBuilderHelper()
+        .setServiceName(this.axiosServiceName)
+        .setMethod('GET')
+        .setUrl(`${this.url}${endpoint}${params}`)
+        .setParams(params)
+        .setFuncName(this.currentFunctionName)
+        .setRequest(request)
+        .build();
+
       return this.responses.json(request.status, request.data as Entity);
     } catch (err) {
-      this.produceLog(
-        `${this.url}${endpoint}${params}`,
-        params,
-        null,
-        'GET',
-        null,
-        err,
-      );
+      new ConsoleLogBuilderHelper()
+        .setServiceName(this.axiosServiceName)
+        .setMethod('GET')
+        .setUrl(`${this.url}${endpoint}${params}`)
+        .setParams(params)
+        .setFuncName(this.currentFunctionName)
+        .setErr(err)
+        .build();
+
       return this.responses.json(
         err.response.data.statusCode,
         null,
@@ -57,10 +62,26 @@ export class BaseAxiosService {
         this.httpService.post(endpoint, body, this.config),
       );
 
-      this.produceLog(`${this.url}${endpoint}`, null, body, 'POST', request);
+      new ConsoleLogBuilderHelper()
+        .setServiceName(this.axiosServiceName)
+        .setMethod('POST')
+        .setUrl(`${this.url}${endpoint}`)
+        .setBody(body)
+        .setFuncName(this.currentFunctionName)
+        .setRequest(request)
+        .build();
+
       return this.responses.json(request.status, request.data as Entity);
     } catch (err) {
-      this.produceLog(`${this.url}${endpoint}`, null, body, 'POST', null, err);
+      new ConsoleLogBuilderHelper()
+        .setServiceName(this.axiosServiceName)
+        .setMethod('POST')
+        .setUrl(`${this.url}${endpoint}`)
+        .setBody(body)
+        .setFuncName(this.currentFunctionName)
+        .setErr(err)
+        .build();
+
       return this.responses.json(
         err.response.data.statusCode,
         null,
@@ -78,23 +99,27 @@ export class BaseAxiosService {
       const request = await lastValueFrom(
         this.httpService.put(`${endpoint}/${id}`, body, this.config),
       );
-      this.produceLog(
-        `${this.url}${endpoint}${id}`,
-        null,
-        body,
-        'PUT',
-        request,
-      );
+
+      new ConsoleLogBuilderHelper()
+        .setServiceName(this.axiosServiceName)
+        .setMethod('PUT')
+        .setUrl(`${this.url}${endpoint}/${id}`)
+        .setBody(body)
+        .setFuncName(this.currentFunctionName)
+        .setRequest(request)
+        .build();
+
       return this.responses.json(request.status, request.data as Entity);
     } catch (err) {
-      this.produceLog(
-        `${this.url}${endpoint}${id}`,
-        null,
-        body,
-        'PUT',
-        null,
-        err,
-      );
+      new ConsoleLogBuilderHelper()
+        .setServiceName(this.axiosServiceName)
+        .setMethod('PUT')
+        .setUrl(`${this.url}${endpoint}`)
+        .setBody(body)
+        .setFuncName(this.currentFunctionName)
+        .setErr(err)
+        .build();
+
       return this.responses.json(
         err.response.data.statusCode,
         null,
@@ -108,82 +133,30 @@ export class BaseAxiosService {
       const request = await lastValueFrom(
         this.httpService.delete(`${endpoint}/${id}`, this.config),
       );
-      this.produceLog(
-        `${this.url}/${endpoint}/${id}`,
-        null,
-        null,
-        'DELETE',
-        request,
-      );
+
+      new ConsoleLogBuilderHelper()
+        .setServiceName(this.axiosServiceName)
+        .setMethod('DELETE')
+        .setUrl(`${this.url}${endpoint}/${id}`)
+        .setFuncName(this.currentFunctionName)
+        .setRequest(request)
+        .build();
+
       return this.responses.json(request.status, request.data);
     } catch (err) {
-      this.produceLog(
-        `${this.url}/${endpoint}/${id}`,
-        null,
-        null,
-        'DELETE',
-        null,
-        err,
-      );
+      new ConsoleLogBuilderHelper()
+        .setServiceName(this.axiosServiceName)
+        .setMethod('DELETE')
+        .setUrl(`${this.url}${endpoint}/${id}`)
+        .setFuncName(this.currentFunctionName)
+        .setErr(err)
+        .build();
+
       return this.responses.json(
         err.response.data.statusCode,
         null,
         err.response.data.message,
       );
     }
-  }
-
-  protected produceLog(
-    url = null,
-    params = null,
-    body = null,
-    method,
-    request = null,
-    err = null,
-  ): void {
-    if (err) {
-      Logger.error(
-        `:::${this.axiosServiceName}::: [FUNC]: ${
-          this.currentFunctionName
-        } <==> [METHOD]: ${method} <==> [URL]: ${url} <==> [PARAMS]: ${params}<==>[BODY]: ${JSON.stringify(
-          body,
-        )} <==> [RESPONSE]: ${JSON.stringify(err.response.data)}`,
-      );
-    } else {
-      Logger.log(
-        `:::${this.axiosServiceName}::: [FUNC]: ${
-          this.currentFunctionName
-        } <==> [METHOD]: ${method} <==> [URL]: ${url} <==> [PARAMS]: ${params}<==>[BODY]: ${JSON.stringify(
-          body,
-        )} <==> [RESPONSE]: ${JSON.stringify(request.data)}`,
-      );
-    }
-  }
-
-  protected makeParam(objParam): string {
-    let result = '';
-
-    const arrArgs = Object.keys(objParam);
-
-    const noValue = (val): boolean => {
-      const availableTypes = ['boolean', 'number'];
-      return !val && !availableTypes.includes(typeof val);
-    };
-
-    arrArgs.forEach((x, y) => {
-      result += y < 1 ? '?' : '';
-      const val = objParam[x];
-      if (noValue(val)) return;
-      else if (Array.isArray(val)) {
-        if (!val.length) return;
-        val.forEach((a, b) => {
-          result += `${x}[${b}]=${a}`;
-          result += b < val.length - 1 ? '&' : '';
-        });
-      } else result += `${x}=${val}`;
-      result += y < arrArgs.length - 1 ? '&' : '';
-    });
-
-    return result;
   }
 }
