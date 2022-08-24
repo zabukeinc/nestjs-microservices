@@ -22,8 +22,6 @@ export class ProductService extends BaseJubelioService {
     this.logBuilder = new LogPayloadBuilderHelper(productLogProducer);
   }
 
-  protected logBuilder: LogPayloadBuilderHelper;
-
   async getProductById(id: number): Promise<ResponseEntity> {
     this.currentFunctionName = 'getProductById';
 

@@ -9,6 +9,10 @@ import { ProductService } from '@product-module/data/services/product.service';
 import { ProductOrchestrator } from '@product-module/domain/usecases/product.orchestrator';
 import { ProductController } from '@product-module/infrastructure/controllers/product.controller';
 import { ProductProducer } from '@product-module/infrastructure/producers/product.producer';
+import { AdjustmentService } from 'src/modules/adjustment/data/services/adjustment.service';
+import { AdjustmentOrchestrator } from 'src/modules/adjustment/domain/usecases/adjustment.orchestrator';
+import { AdjustmentController } from 'src/modules/adjustment/infrastructure/controllers/adjustment.controller';
+import { AdjustmentProducer } from 'src/modules/adjustment/infrastructure/producers/adjustment.producer';
 import { HOPE_CONNECTION_NAME } from 'src/modules/connection-name';
 
 export const PORT = 3000;
@@ -38,9 +42,17 @@ export const PROVIDERS = [
   AccountOrchestrator,
   AccountService,
   AccountProducer,
+
+  AdjustmentOrchestrator,
+  AdjustmentService,
+  AdjustmentProducer,
 ];
 
-export const CONTROLLERS = [ProductController, AccountController];
+export const CONTROLLERS = [
+  ProductController,
+  AccountController,
+  AdjustmentController,
+];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {
   type: 'mysql',

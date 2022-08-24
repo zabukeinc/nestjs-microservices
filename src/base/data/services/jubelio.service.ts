@@ -11,6 +11,7 @@ import {
 } from '@utils/global.util';
 import Crypto from 'crypto';
 import { CredentialService } from '@product-module/data/services/credential.service';
+import { LogPayloadBuilderHelper } from '@base-module/helpers/log-payload-builder.helper';
 
 export class BaseJubelioService extends BaseAxiosService {
   constructor(protected httpService: HttpService) {
@@ -29,6 +30,8 @@ export class BaseJubelioService extends BaseAxiosService {
   public axiosServiceName = 'JUBELIO_SERVICE';
 
   public retryLimit = 5;
+
+  public logBuilder: LogPayloadBuilderHelper;
 
   // TODO: Implement retry limit request.
 

@@ -22,8 +22,6 @@ export class AccountService extends BaseJubelioService {
     this.logBuilder = new LogPayloadBuilderHelper(producer);
   }
 
-  private logBuilder: LogPayloadBuilderHelper;
-
   async getAccountInformation(): Promise<ResponseEntity> {
     this.currentFunctionName = 'getAccountInformation';
     const url = `/systemsetting/account-mapping`;
