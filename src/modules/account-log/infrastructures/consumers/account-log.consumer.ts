@@ -1,17 +1,17 @@
+import { AccountLogService } from '@account-log-module/data/services/account-log.service';
 import { BaseConsumer } from '@base-module/infrastructure/consumers/base.consumer';
 import { Controller } from '@nestjs/common';
-import { ProductLogService } from '@product-log-module/data/services/product-log.service';
 import {
   KAFKA_BROKER,
   KAFKA_CLIENT_ID,
   KAFKA_GROUP_ID,
 } from '@utils/global.util';
 import { Kafka } from 'kafkajs';
-import { HopeProductTopic } from './product.topic';
+import { HopeAccountTopic } from './account.topic';
 
-@Controller('product-log')
-export class ProductLogConsumer extends BaseConsumer {
-  constructor(protected readonly productLogService: ProductLogService) {
+@Controller('account-log')
+export class AccountLogConsumer extends BaseConsumer {
+  constructor(protected readonly accountLogService: AccountLogService) {
     super(
       new Kafka({
         clientId: KAFKA_CLIENT_ID,
@@ -25,7 +25,7 @@ export class ProductLogConsumer extends BaseConsumer {
   setTopics(): void {
     this.topics = [
       {
-        topic: HopeProductTopic.HOPE_PRODUCT_LOG,
+        topic: HopeAccountTopic.HOPE_ACCOUNT_LOG,
         execute: async (payload) => this.insert(payload),
       },
     ];
@@ -33,8 +33,8 @@ export class ProductLogConsumer extends BaseConsumer {
 
   async insert(payload): Promise<void> {
     console.log(
-      `[LOG-SERVICE-CONSUMER]=> CONSUME ${HopeProductTopic.HOPE_PRODUCT_LOG}`,
+      `[LOG-SERVICE-CONSUMER]=> CONSUME ${HopeAccountTopic.HOPE_ACCOUNT_LOG}`,
     );
-    await this.productLogService.save(payload);
+    await this.accountLogService.save(payload);
   }
 }

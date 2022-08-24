@@ -1,0 +1,1 @@
+export const LOG_CONNECTION_NAME = 'LOG_CONNECTION';

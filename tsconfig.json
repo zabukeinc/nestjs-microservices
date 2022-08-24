@@ -16,6 +16,7 @@
       "@utils/*": ["src/utils/*"],
       "@base-module/*": ["src/base/*"],
       "@product-log-module/*": ["src/modules/product-log/*"],
+      "@account-log-module/*": ["src/modules/account-log/*"],
     }
   }
 }

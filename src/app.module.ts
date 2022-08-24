@@ -1,3 +1,4 @@
+import { AccountLogModule } from '@account-log-module/account-log.module';
 import { HttpModule } from '@nestjs/axios';
 import { Inject, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -25,6 +26,7 @@ import microserviceConfigUtil, {
 
     // Sub Modules
     ProductLogModule,
+    AccountLogModule,
   ],
 })
 export class AppModule {

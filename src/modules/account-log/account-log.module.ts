@@ -7,6 +7,7 @@ import microserviceConfigUtil, {
   KAFKA_CLIENT_NAME,
 } from '../../utils/microservice.util';
 import { LOG_CONNECTION_NAME } from '../connection-name';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,4 +29,4 @@ import { LOG_CONNECTION_NAME } from '../connection-name';
   controllers: CONTROLLERS,
   providers: PROVIDERS,
 })
-export class ProductLogModule {}
+export class AccountLogModule {}
