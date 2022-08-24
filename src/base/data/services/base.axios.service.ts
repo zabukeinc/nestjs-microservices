@@ -19,18 +19,6 @@ export class BaseAxiosService {
   public axiosServiceName = 'AXIOS_SERVICE_DEFAULT';
   public currentFunctionName = 'FUNCTION_DEFAULT';
 
-  setConfig(config: HttpModuleOptions): this {
-    this.config = config;
-
-    return this;
-  }
-
-  setBaseUrl(url: string): this {
-    this.url = url;
-
-    return this;
-  }
-
   async get<Entity>(endpoint: string, params = null): Promise<ResponseEntity> {
     params = params ? this.makeParam(params) : '';
 
