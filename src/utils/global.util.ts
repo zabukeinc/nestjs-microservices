@@ -14,6 +14,10 @@ import { AdjustmentOrchestrator } from 'src/modules/adjustment/domain/usecases/a
 import { AdjustmentController } from 'src/modules/adjustment/infrastructure/controllers/adjustment.controller';
 import { AdjustmentProducer } from 'src/modules/adjustment/infrastructure/producers/adjustment.producer';
 import { HOPE_CONNECTION_NAME } from 'src/modules/connection-name';
+import { PurchaseOrderService } from 'src/modules/purchase-order/data/services/purchase-order.service';
+import { PurchaseOrderOrchestrator } from 'src/modules/purchase-order/domain/usecases/purchase-order.orchestrator';
+import { PurchaseOrderController } from 'src/modules/purchase-order/infrastructure/controllers/purchase-order.controller';
+import { PurchaseOrderProducer } from 'src/modules/purchase-order/infrastructure/producers/purchase-order.producer';
 
 export const PORT = 3000;
 
@@ -46,12 +50,17 @@ export const PROVIDERS = [
   AdjustmentOrchestrator,
   AdjustmentService,
   AdjustmentProducer,
+
+  PurchaseOrderOrchestrator,
+  PurchaseOrderService,
+  PurchaseOrderProducer,
 ];
 
 export const CONTROLLERS = [
   ProductController,
   AccountController,
   AdjustmentController,
+  PurchaseOrderController,
 ];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {
