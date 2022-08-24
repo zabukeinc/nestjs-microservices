@@ -103,7 +103,7 @@ export class ProductService extends BaseJubelioService {
   }
 
   async getProductStock(
-    params: GetAllProductMasterParamEntity & { q: string },
+    params: GetAllProductMasterParamEntity,
   ): Promise<ResponseEntity> {
     this.currentFunctionName = 'getProductStock';
     const result = await this.get('/inventory', params);
