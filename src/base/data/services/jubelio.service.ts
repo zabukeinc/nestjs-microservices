@@ -38,7 +38,6 @@ export class BaseJubelioService extends BaseAxiosService {
 
     try {
       const credential = await this.credentialService.getToken();
-
       if (credential?.token) {
         Object.assign(this.config, {
           headers: { Authorization: credential.token },

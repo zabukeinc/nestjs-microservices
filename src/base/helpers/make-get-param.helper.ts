@@ -1,7 +1,7 @@
 /**
  * Transform object param to query parameters.
- * @param objParam 
- * @returns 
+ * @param objParam
+ * @returns
  */
 export const makeGetParam = (objParam): string => {
   let result = '';
@@ -28,4 +28,4 @@ export const makeGetParam = (objParam): string => {
   });
 
   return result;
-}
+};

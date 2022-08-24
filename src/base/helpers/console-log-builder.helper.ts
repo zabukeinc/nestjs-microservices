@@ -7,8 +7,8 @@ export class ConsoleLogBuilderHelper {
   private params: any;
   private body: any;
   private method: string;
-  private request: any;
-  private err: any;
+  private request: any = null;
+  private err: any = null;
 
   setServiceName(serviceName: string): this {
     this.serviceName = serviceName;
@@ -54,12 +54,34 @@ export class ConsoleLogBuilderHelper {
     const response = this.err
       ? JSON.stringify(this.err.response.data)
       : JSON.stringify(this.request.data);
-    Logger.error(
-      `:::${this.serviceName}::: [FUNC]: ${
-        this.currentFunctionName
-      } <==> [METHOD]: ${this.method} <==> [URL]: ${this.url} <==> [PARAMS]: ${
-        this.params
-      }<==>[BODY]: ${JSON.stringify(this.body)} <==> [RESPONSE]: ${response}`,
-    );
+
+    const msg = `:::${this.serviceName}::: [FUNC]: ${
+      this.currentFunctionName
+    } <==> [METHOD]: ${this.method} <==> [URL]: ${this.url} <==> [PARAMS]: ${
+      this.params
+    }<==>[BODY]: ${JSON.stringify(this.body)} <==> [RESPONSE]: ${response}`;
+
+    if (this.err) {
+      Logger.error(msg);
+    } else {
+      Logger.log(msg);
+    }
+    // const hasError = Object.keys(this.err)?.length > 0
+
+    // const response = hasError
+    //   ? JSON.stringify(this.err?.response?.data || this.err)
+    //   : JSON.stringify(this.request?.data);
+
+    //   const message = `:::${this.serviceName}::: [FUNC]: ${
+    //     this.currentFunctionName
+    //   } <==> [METHOD]: ${this.method} <==> [URL]: ${this.url} <==> [PARAMS]: ${
+    //     this.params
+    //   }<==>[BODY]: ${JSON.stringify(this.body)} <==> [RESPONSE]: ${response}`;
+
+    //   if (this.err) {
+    //     Logger.error(message);
+    //   } else {
+    //     Logger.log(message);
+    //   }
   }
 }

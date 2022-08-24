@@ -1,0 +1,1 @@
+export const HOPE_CONNECTION_NAME = 'HOPE_CONNECTION';

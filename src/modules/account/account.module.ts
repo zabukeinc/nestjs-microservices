@@ -1,12 +1,14 @@
-import { AccountModule } from '@account-module/account.module';
 import { HttpModule } from '@nestjs/axios';
-import { Inject, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ClientProxy, ClientsModule } from '@nestjs/microservices';
-import { ProductModule } from '@product-module/product.module';
+import { ClientsModule } from '@nestjs/microservices';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CONTROLLERS, DB_CONFIG, MODELS, PROVIDERS } from '@utils/global.util';
 import microserviceConfigUtil, {
   KAFKA_CLIENT_NAME,
 } from '@utils/microservice.util';
+import { HOPE_CONNECTION_NAME } from '../connection-name';
+
 @Module({
   imports: [
     HttpModule,
@@ -23,18 +25,10 @@ import microserviceConfigUtil, {
         inject: [ConfigService],
       },
     ]),
-
-    // Sub Modules
-    ProductModule,
-    AccountModule,
+    TypeOrmModule.forRoot(DB_CONFIG),
+    TypeOrmModule.forFeature(MODELS, HOPE_CONNECTION_NAME),
   ],
+  controllers: CONTROLLERS,
+  providers: PROVIDERS,
 })
-export class AppModule {
-  constructor(@Inject(KAFKA_CLIENT_NAME) private clientKafka: ClientProxy) {
-    console.log('App Loaded');
-  }
-
-  async onApplicationBootstrap(): Promise<void> {
-    await this.clientKafka.connect();
-  }
-}
+export class AccountModule {}

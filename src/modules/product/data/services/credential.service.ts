@@ -5,12 +5,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as moment from 'moment';
 import { CredentialModel } from '../models/credential.model';
-import { PRODUCT_COMMAND_CONNECTION } from '@product-module/utils/product.connection';
+import { HOPE_CONNECTION_NAME } from 'src/modules/connection-name';
 
 @Injectable()
 export class CredentialService {
   constructor(
-    @InjectRepository(CredentialModel, PRODUCT_COMMAND_CONNECTION)
+    @InjectRepository(CredentialModel, HOPE_CONNECTION_NAME)
     private repo: Repository<CredentialModel>,
   ) {}
 

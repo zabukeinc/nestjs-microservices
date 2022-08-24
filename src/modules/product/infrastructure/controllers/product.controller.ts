@@ -38,7 +38,6 @@ export class ProductController {
     @Param('itemGroupId') itemGroupId: number,
   ): Promise<ResponseEntity> {
     try {
-      console.log(itemGroupId, 'item group id');
       return await this.orchestrator.getProductCatalogByItemGroupId(
         itemGroupId,
       );

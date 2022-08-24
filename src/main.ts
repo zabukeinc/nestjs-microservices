@@ -10,23 +10,12 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   const configUser = new DocumentBuilder()
-    .setTitle('Users Module')
+    .setTitle('Hope Module')
     .setVersion('1.0')
-    .addTag('Users')
+    .addTag('Hope Module ITMI-Core')
     .build();
   const submoduleUser = SwaggerModule.createDocument(app, configUser);
   SwaggerModule.setup('api', app, submoduleUser);
-
-  const configUserAddress = new DocumentBuilder()
-    .setTitle('Users Address Sub-Module')
-    .setVersion('1.0')
-    .addTag('Users')
-    .build();
-  const submoduleUserUserAddress = SwaggerModule.createDocument(
-    app,
-    configUserAddress,
-  );
-  SwaggerModule.setup('api', app, submoduleUserUserAddress);
 
   await app.listen(PORT);
 }
