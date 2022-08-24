@@ -1,11 +1,7 @@
 import { BaseConsumer } from '@base-module/infrastructure/consumers/base.consumer';
 import { Controller } from '@nestjs/common';
 import { ProductLogService } from '@product-log-module/data/services/product-log.service';
-import {
-  KAFKA_BROKER,
-  KAFKA_CLIENT_ID,
-  KAFKA_GROUP_ID,
-} from '@utils/global.util';
+import { KAFKA_BROKER } from '@utils/global.util';
 import { Kafka } from 'kafkajs';
 import { HopeProductTopic } from './product.topic';
 
@@ -14,10 +10,10 @@ export class ProductLogConsumer extends BaseConsumer {
   constructor(protected readonly productLogService: ProductLogService) {
     super(
       new Kafka({
-        clientId: KAFKA_CLIENT_ID,
+        clientId: 'hope-log-product-service',
         brokers: [KAFKA_BROKER],
       }).consumer({
-        groupId: KAFKA_GROUP_ID,
+        groupId: 'hope-log-product-service',
       }),
     );
   }
