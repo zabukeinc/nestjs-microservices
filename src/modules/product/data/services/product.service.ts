@@ -4,43 +4,50 @@ import { HttpService } from '@nestjs/axios';
 import { CredentialService } from '@product-module/data/services/credential.service';
 import { Injectable } from '@nestjs/common';
 import { BaseJubelioService } from '@base-module/data/services/jubelio.service';
-import { ProductLogService } from './product-log.service';
 import { JUBELIO_HOST } from '@utils/global.util';
+import { ProductProducer } from '@product-module/infrastructure/producers/product.producer';
+import { LogPayloadBuilderHelper } from '@base-module/helpers/log-payload-builder.helper';
 
 @Injectable()
 export class ProductService extends BaseJubelioService {
   constructor(
     protected httpService: HttpService,
     protected credentialServiceImpl: CredentialService,
-    protected productLog: ProductLogService,
+    protected productLogProducer: ProductProducer,
   ) {
     super(httpService);
 
     this.credentialService = credentialServiceImpl;
+    this.logBuilder = new LogPayloadBuilderHelper(productLogProducer);
   }
+
+  protected logBuilder: LogPayloadBuilderHelper;
 
   async getProductById(id: number): Promise<ResponseEntity> {
     this.currentFunctionName = 'getProductById';
 
     const url = `/inventory/items/${id}`;
     const result = await this.get(url);
+
+    const logger = this.logBuilder
+      .setAction('GET')
+      .setEndpoint(`${JUBELIO_HOST}${url}`)
+      .setResponse(result);
+
     if (this.isUnauthorized(result)) {
-      await this.productLog.insertLog('GET', result, {
-        url: `${JUBELIO_HOST}${url}`,
-      });
+      await logger.produce();
+
       this.config = await this.login();
       return await this.getProductById(id);
     }
 
-    await this.productLog.insertLog('GET', result, {
-      url: `${JUBELIO_HOST}${url}`,
-    });
+    await logger.produce();
     return result;
   }
 
   async getAllProductMaster(
     requestParam: GetAllProductMasterParamEntity,
-  ): Promise<any> {
+  ): Promise<ResponseEntity> {
     this.currentFunctionName = 'getAllProductMaster';
 
     const params: GetAllProductMasterParamEntity = {
@@ -55,38 +62,43 @@ export class ProductService extends BaseJubelioService {
 
     const result = await this.get(url, params);
 
+    const logger = this.logBuilder
+      .setAction('GET')
+      .setEndpoint(`${JUBELIO_HOST}${url}`)
+      .setResponse(result);
+
     if (this.isUnauthorized(result)) {
-      await this.productLog.insertLog('GET', result, {
-        url: `${JUBELIO_HOST}${url}${this.makeParam(params)}`,
-      });
+      await logger.produce();
 
       this.config = await this.login();
 
       return await this.getAllProductMaster(requestParam);
     }
 
-    await this.productLog.insertLog('GET', result, {
-      url: `${JUBELIO_HOST}${url}${this.makeParam(params)}`,
-    });
-
+    await logger.produce();
     return result;
   }
 
-  async getProductCatalog(itemGroupId: number): Promise<any> {
+  async getProductCatalog(itemGroupId: number): Promise<ResponseEntity> {
     this.currentFunctionName = 'getProductCatalog';
 
     const url = `/inventory/catalog/${itemGroupId}`;
     const result = await this.get(url);
 
+    const logger = this.logBuilder
+      .setAction('GET')
+      .setEndpoint(`${JUBELIO_HOST}${url}`)
+      .setResponse(result);
+
     if (this.isUnauthorized(result)) {
-      await this.productLog.insertLog('GET', result, {
-        url: `${JUBELIO_HOST}${url}`,
-      });
+      await logger.produce();
+
       this.config = await this.login();
 
       return await this.getProductCatalog(itemGroupId);
     }
 
+    await logger.produce();
     return result;
   }
 
@@ -94,15 +106,21 @@ export class ProductService extends BaseJubelioService {
     params: GetAllProductMasterParamEntity & { q: string },
   ): Promise<ResponseEntity> {
     this.currentFunctionName = 'getProductStock';
-
     const result = await this.get('/inventory', params);
 
+    const logger = this.logBuilder
+      .setAction('GET')
+      .setEndpoint(`${JUBELIO_HOST}/inventory${this.makeParam(params)}`)
+      .setResponse(result);
+
     if (this.isUnauthorized(result)) {
+      await logger.produce();
       this.config = await this.login();
 
       return await this.getProductStock(params);
     }
 
+    await logger.produce();
     return result;
   }
 
@@ -111,20 +129,19 @@ export class ProductService extends BaseJubelioService {
 
     const url = '/inventory/catalog/';
     const result = await this.post(url, data);
+    const logger = this.logBuilder
+      .setAction('POST')
+      .setEndpoint(`${JUBELIO_HOST}${url}`)
+      .setRequest(data)
+      .setResponse(result);
 
     if (this.isUnauthorized(result)) {
-      await this.productLog.insertLog('POST', result, {
-        url: `${JUBELIO_HOST}${url}`,
-        data,
-      });
+      await logger.produce();
       this.config = await this.login();
       return await this.createEditProduct(data);
     }
 
-    await this.productLog.insertLog('POST', result, {
-      url: `${JUBELIO_HOST}${url}`,
-      data,
-    });
+    await logger.produce();
     return result;
   }
 
@@ -133,17 +150,20 @@ export class ProductService extends BaseJubelioService {
 
     const url = '/inventory/catalog/set-master';
     const result = await this.post(url, data);
+    const logger = this.logBuilder
+      .setAction('POST')
+      .setEndpoint(`${JUBELIO_HOST}${url}`)
+      .setRequest(data)
+      .setResponse(result);
 
     if (this.isUnauthorized(result)) {
-      await this.productLog.insertLog('POST', result, {
-        url: `${JUBELIO_HOST}${url}`,
-        data,
-      });
+      await logger.produce();
       this.config = await this.login();
 
       return await this.setProductToMaster(data);
     }
 
+    await logger.produce();
     return result;
   }
 }
