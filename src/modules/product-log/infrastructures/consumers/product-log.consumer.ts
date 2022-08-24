@@ -14,7 +14,7 @@ export class ProductLogConsumer extends BaseConsumer {
   constructor(protected readonly productLogService: ProductLogService) {
     super(
       new Kafka({
-        clientId: KAFKA_CLIENT_ID,
+        clientId: 'PRODUCT_LOGGER_SERVICE',
         brokers: [KAFKA_BROKER],
       }).consumer({
         groupId: KAFKA_GROUP_ID,
