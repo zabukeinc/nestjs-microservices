@@ -22,6 +22,10 @@ import { PurchaseOrderService } from '@purchase-order-module/data/services/purch
 import { PurchaseOrderOrchestrator } from '@purchase-order-module/domain/usecases/purchase-order.orchestrator';
 import { PurchaseOrderController } from '@purchase-order-module/infrastructure/controllers/purchase-order.controller';
 import { PurchaseOrderProducer } from '@purchase-order-module/infrastructure/producers/purchase-order.producer';
+import { SalesOrderOrchestrator } from '@sales-order-module/domain/usecases/sales-order.orchestrator';
+import { SalesOrderService } from '@sales-order-module/data/services/sales-order.service';
+import { SalesOrderProducer } from '@sales-order-module/infrastructure/producers/sales-order.producer';
+import { SalesOrderController } from '@sales-order-module/infrastructure/controllers/sales-order.controller';
 
 export const PORT = 3000;
 
@@ -58,6 +62,10 @@ export const PROVIDERS = [
   PurchaseOrderOrchestrator,
   PurchaseOrderService,
   PurchaseOrderProducer,
+
+  SalesOrderOrchestrator,
+  SalesOrderService,
+  SalesOrderProducer,
 ];
 
 export const CONTROLLERS = [
@@ -65,6 +73,7 @@ export const CONTROLLERS = [
   AccountController,
   AdjustmentController,
   PurchaseOrderController,
+  SalesOrderController,
 ];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {
