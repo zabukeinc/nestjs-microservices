@@ -21,7 +21,7 @@ export class AdjustmentLogConsumer extends BaseConsumer {
   setTopics(): void {
     this.topics = [
       {
-        topic: HopeAdjustmentTopic.HOPE_ADJUSTMENT_TOPIC,
+        topic: HopeAdjustmentTopic.HOPE_ADJUSTMENT_LOG,
         execute: async (payload) => this.insert(payload),
       },
     ];
@@ -29,7 +29,7 @@ export class AdjustmentLogConsumer extends BaseConsumer {
 
   async insert(payload): Promise<void> {
     console.log(
-      `[LOG-SERVICE-CONSUMER]=> CONSUME ${HopeAdjustmentTopic.HOPE_ADJUSTMENT_TOPIC}`,
+      `[LOG-SERVICE-CONSUMER]=> CONSUME ${HopeAdjustmentTopic.HOPE_ADJUSTMENT_LOG}`,
     );
     await this.service.save(payload);
   }

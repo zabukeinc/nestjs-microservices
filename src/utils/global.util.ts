@@ -45,7 +45,7 @@ export const DB_CONFIG: TypeOrmModuleOptions = {
   host: 'localhost',
   port: 3306,
   username: 'root',
-  password: 'root',
+  // password: 'root',
   database: 'itmi-hope-log',
   entities: MODELS,
   synchronize: true,
