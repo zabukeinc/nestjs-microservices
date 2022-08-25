@@ -21,6 +21,7 @@
       "@adjustment-module/*": ["src/modules/adjustment/*"],
       "@purchase-order-module/*": ["src/modules/purchase-order/*"],
       "@sales-order-module/*": ["src/modules/sales-order/*"],
+      "@invoice-module/*": ["src/modules/invoice/*"],
     }
   }
 }
