@@ -17,6 +17,7 @@
       "@base-module/*": ["src/base/*"],
       "@product-log-module/*": ["src/modules/product-log/*"],
       "@account-log-module/*": ["src/modules/account-log/*"],
+      "@adjustment-log-module/*": ["src/modules/adjustment-log/*"],
     }
   }
 }

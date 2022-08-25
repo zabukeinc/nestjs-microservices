@@ -17,24 +17,35 @@ export const JUBELIO_TIMEOUT = 40000;
 import { AccountLogModel } from '@account-log-module/data/models/account-log.model';
 import { AccountLogService } from '@account-log-module/data/services/account-log.service';
 import { AccountLogConsumer } from '@account-log-module/infrastructures/consumers/account-log.consumer';
+import { AdjustmentLogModel } from '@adjustment-log-module/data/models/adjustment-log.model';
+import { AdjustmentLogService } from '@adjustment-log-module/data/services/adjustment-log.service';
+import { AdjustmentLogConsumer } from '@adjustment-log-module/infrastructures/consumers/adjustment-log.consumer';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ProductLogModel } from '@product-log-module/data/models/product-log.model';
 import { ProductLogService } from '@product-log-module/data/services/product-log.service';
 import { ProductLogConsumer } from '@product-log-module/infrastructures/consumers/product-log.consumer';
 import { LOG_CONNECTION_NAME } from 'src/modules/connection-name';
 
-export const MODELS = [ProductLogModel, AccountLogModel];
+export const MODELS = [ProductLogModel, AccountLogModel, AdjustmentLogModel];
 
-export const PROVIDERS = [ProductLogService, AccountLogService];
+export const PROVIDERS = [
+  ProductLogService,
+  AccountLogService,
+  AdjustmentLogService,
+];
 
-export const CONTROLLERS = [ProductLogConsumer, AccountLogConsumer];
+export const CONTROLLERS = [
+  ProductLogConsumer,
+  AccountLogConsumer,
+  AdjustmentLogConsumer,
+];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {
   type: 'mysql',
   host: 'localhost',
   port: 3306,
   username: 'root',
-  // password: '',
+  password: 'root',
   database: 'itmi-hope-log',
   entities: MODELS,
   synchronize: true,
