@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Pagination, IPaginationMeta } from 'nestjs-typeorm-paginate';
-import { BaseOrchestrator } from '../../../../base/domain/usecases/base.orchestrator'
+import { BaseOrchestrator } from '../../../../base/domain/usecases/base.orchestrator';
 import { UserService } from '../../data/services/user.service';
 import { UserProducer } from '../../infrastructure/producers/user.producer';
 import { UserPinEntity } from '../entities/user-pin.entity';

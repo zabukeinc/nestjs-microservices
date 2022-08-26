@@ -68,7 +68,6 @@ export class UserModel extends BaseModel implements UserEntity {
   })
   user_pin: UserPinModel;
 
-
   @OneToMany(() => TransactionModel, (model) => model.user, {
     onUpdate: 'CASCADE',
   })

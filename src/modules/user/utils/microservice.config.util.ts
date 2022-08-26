@@ -1,11 +1,5 @@
 import { registerAs } from '@nestjs/config';
 import { KafkaOptions, Transport } from '@nestjs/microservices';
-import {
-  KAFKA_BROKER,
-  KAFKA_CLIENT_ID,
-  KAFKA_GROUP_ID,
-  KAFKA_NAME,
-} from 'src/utils/global.util';
 
 export const KAFKA_CLIENT_NAME = 'user-kafka';
 

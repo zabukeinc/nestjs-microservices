@@ -10,11 +10,7 @@ import { UserController } from '@user-module/infrastructure/controllers/user.con
 import { UserProducer } from '@user-module/infrastructure/producers/user.producer';
 import { USER_COMMAND_CONNECTION } from '@user-module/utils/connection-name.util';
 
-export const MODELS = [
-  UserModel,
-  UserPinModel,
-  TransactionModel,
-];
+export const MODELS = [UserModel, UserPinModel, TransactionModel];
 
 export const PROVIDERS = [
   UserService,
@@ -24,11 +20,7 @@ export const PROVIDERS = [
   TransactionService,
 ];
 
-export const CONTROLLERS = [
-  UserController,
-
-  TransactionConsumer,
-];
+export const CONTROLLERS = [UserController, TransactionConsumer];
 
 export const PORT = 3000;
 

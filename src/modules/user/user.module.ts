@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { 
-  CONTROLLERS, 
-  MODELS, 
-  PROVIDERS, 
-  DATABASE_CONFIGURATION 
+import {
+  CONTROLLERS,
+  MODELS,
+  PROVIDERS,
+  DATABASE_CONFIGURATION,
 } from '@utils/global.util';
 import { USER_COMMAND_CONNECTION } from '@user-module/utils/connection-name.util';
 import microserviceConfigUtil, {
