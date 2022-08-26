@@ -24,20 +24,30 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ProductLogModel } from '@product-log-module/data/models/product-log.model';
 import { ProductLogService } from '@product-log-module/data/services/product-log.service';
 import { ProductLogConsumer } from '@product-log-module/infrastructures/consumers/product-log.consumer';
+import { PurchaseOrderLogModel } from '@purchase-order-log-module/data/models/purchase-order-log.model';
+import { PurchaseOrderLogService } from '@purchase-order-log-module/data/services/purchase-order-log.service';
+import { PurchaseOrderLogConsumer } from '@purchase-order-log-module/infrastructures/consumers/purchase-order-log.consumer';
 import { LOG_CONNECTION_NAME } from 'src/modules/connection-name';
 
-export const MODELS = [ProductLogModel, AccountLogModel, AdjustmentLogModel];
+export const MODELS = [
+  ProductLogModel,
+  AccountLogModel,
+  AdjustmentLogModel,
+  PurchaseOrderLogModel,
+];
 
 export const PROVIDERS = [
   ProductLogService,
   AccountLogService,
   AdjustmentLogService,
+  PurchaseOrderLogService,
 ];
 
 export const CONTROLLERS = [
   ProductLogConsumer,
   AccountLogConsumer,
   AdjustmentLogConsumer,
+  PurchaseOrderLogConsumer,
 ];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {
