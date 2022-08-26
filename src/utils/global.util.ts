@@ -27,6 +27,9 @@ import { ProductLogConsumer } from '@product-log-module/infrastructures/consumer
 import { PurchaseOrderLogModel } from '@purchase-order-log-module/data/models/purchase-order-log.model';
 import { PurchaseOrderLogService } from '@purchase-order-log-module/data/services/purchase-order-log.service';
 import { PurchaseOrderLogConsumer } from '@purchase-order-log-module/infrastructures/consumers/purchase-order-log.consumer';
+import { SalesOrderLogModel } from '@sales-order-log-module/data/models/sales-order-log.model';
+import { SalesOrderLogService } from '@sales-order-log-module/data/services/sales-order-log.service';
+import { SalesOrderLogConsumer } from '@sales-order-log-module/infrastructures/consumers/sales-order-log.consumer';
 import { LOG_CONNECTION_NAME } from 'src/modules/connection-name';
 
 export const MODELS = [
@@ -34,6 +37,7 @@ export const MODELS = [
   AccountLogModel,
   AdjustmentLogModel,
   PurchaseOrderLogModel,
+  SalesOrderLogModel,
 ];
 
 export const PROVIDERS = [
@@ -41,6 +45,7 @@ export const PROVIDERS = [
   AccountLogService,
   AdjustmentLogService,
   PurchaseOrderLogService,
+  SalesOrderLogService,
 ];
 
 export const CONTROLLERS = [
@@ -48,6 +53,7 @@ export const CONTROLLERS = [
   AccountLogConsumer,
   AdjustmentLogConsumer,
   PurchaseOrderLogConsumer,
+  SalesOrderLogConsumer,
 ];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {

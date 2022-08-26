@@ -19,6 +19,7 @@
       "@account-log-module/*": ["src/modules/account-log/*"],
       "@adjustment-log-module/*": ["src/modules/adjustment-log/*"],
       "@purchase-order-log-module/*": ["src/modules/purchase-order-log/*"],
+      "@sales-order-log-module/*": ["src/modules/sales-order-log/*"],
     }
   }
 }
