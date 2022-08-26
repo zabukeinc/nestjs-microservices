@@ -17,6 +17,7 @@ import { UserOrchestrator } from '../../domain/usecases/user.orchestrator';
 import { UserPinDTO } from '../dto/user-pin.dto';
 import { UserDTO } from '../dto/user.dto';
 
+// TODO: Compare with Hexagon Architecture
 @Controller('users')
 @ApiTags('API Users')
 export class UserController extends BaseController<UserEntity> {

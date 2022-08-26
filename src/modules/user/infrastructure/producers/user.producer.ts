@@ -13,6 +13,7 @@ export class UserProducer extends BaseProducer {
   }
 
   async created(entity: UserEntity): Promise<void> {
+    // TODO: Research Observable.
     lastValueFrom(
       this.client.send(UserTopics.HANDLE_USER_CREATED, JSON.stringify(entity)),
     );

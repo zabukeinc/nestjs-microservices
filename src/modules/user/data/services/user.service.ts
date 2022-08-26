@@ -8,6 +8,7 @@ import { UserModel } from '../models/user.model';
 
 @Injectable()
 export class UserService extends BaseService<UserEntity> {
+  // Knex, MikroORM, Prisma
   constructor(
     @InjectRepository(UserModel, USER_COMMAND_CONNECTION)
     public repository: Repository<UserEntity>,
