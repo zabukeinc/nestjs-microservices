@@ -20,6 +20,9 @@ import { AccountLogConsumer } from '@account-log-module/infrastructures/consumer
 import { AdjustmentLogModel } from '@adjustment-log-module/data/models/adjustment-log.model';
 import { AdjustmentLogService } from '@adjustment-log-module/data/services/adjustment-log.service';
 import { AdjustmentLogConsumer } from '@adjustment-log-module/infrastructures/consumers/adjustment-log.consumer';
+import { InvoiceLogModel } from '@invoice-log-module/data/models/invoice-log.model';
+import { InvoiceLogService } from '@invoice-log-module/data/services/invoice-log.service';
+import { InvoiceLogConsumer } from '@invoice-log-module/infrastructures/consumers/invoice-log.consumer';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ProductLogModel } from '@product-log-module/data/models/product-log.model';
 import { ProductLogService } from '@product-log-module/data/services/product-log.service';
@@ -38,6 +41,7 @@ export const MODELS = [
   AdjustmentLogModel,
   PurchaseOrderLogModel,
   SalesOrderLogModel,
+  InvoiceLogModel,
 ];
 
 export const PROVIDERS = [
@@ -46,6 +50,7 @@ export const PROVIDERS = [
   AdjustmentLogService,
   PurchaseOrderLogService,
   SalesOrderLogService,
+  InvoiceLogService,
 ];
 
 export const CONTROLLERS = [
@@ -54,6 +59,7 @@ export const CONTROLLERS = [
   AdjustmentLogConsumer,
   PurchaseOrderLogConsumer,
   SalesOrderLogConsumer,
+  InvoiceLogConsumer,
 ];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {

@@ -20,6 +20,7 @@
       "@adjustment-log-module/*": ["src/modules/adjustment-log/*"],
       "@purchase-order-log-module/*": ["src/modules/purchase-order-log/*"],
       "@sales-order-log-module/*": ["src/modules/sales-order-log/*"],
+      "@invoice-log-module/*": ["src/modules/invoice-log/*"],
     }
   }
 }
