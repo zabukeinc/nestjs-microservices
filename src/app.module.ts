@@ -1,12 +1,12 @@
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Inject, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientProxy, ClientsModule } from '@nestjs/microservices';
-import { UserModule } from '@user-module/user.module';
-import microserviceConfigUtil, {
-  KAFKA_CLIENT_NAME,
-} from '@user-module/utils/microservice.config.util';
+import { MikroormModule as CustomModule } from './modules/mikroorm/mikroorm.module';
+import microserviceConfigUtil, { KAFKA_CLIENT_NAME } from './utils/global.util';
 @Module({
   imports: [
+    MikroOrmModule.forRoot(),
     ConfigModule.forRoot({
       load: [microserviceConfigUtil],
       isGlobal: true,
@@ -22,7 +22,7 @@ import microserviceConfigUtil, {
     ]),
 
     // Sub Modules
-    UserModule,
+    CustomModule,
   ],
 })
 export class AppModule {
