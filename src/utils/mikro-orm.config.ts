@@ -5,6 +5,7 @@ import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { MikroormModel } from '../modules/mikroorm/data/models/mikroorm.model';
 
 export default {
+  name: 'default',
   type: 'mysql',
   host: '127.0.0.1',
   port: 3306,
