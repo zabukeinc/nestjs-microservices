@@ -1,7 +1,7 @@
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 import { MikroormEntity } from '../../domain/entities/mikroorm.entity';
 
-@Entity()
+@Entity({ tableName: 'mikroorms' })
 export class MikroormModel implements MikroormEntity {
   @PrimaryKey({
     autoincrement: true,
